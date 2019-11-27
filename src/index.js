@@ -1,7 +1,7 @@
 /**
  * @class El
  */
-class El {
+module.exports = class El {
     constructor(id) {
         this.el = document.getElementById(id);
         this.events = {};
