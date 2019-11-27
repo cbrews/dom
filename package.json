@@ -1,16 +1,21 @@
 {
-  "name": "@cbrews/el",
+  "name": "@cbrews/dom",
   "version": "1.0.0",
-  "description": "Quick class for element management",
+  "description": "Quick class-based strategy for element & form management",
   "main": "src/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cbrews/el.git"
+    "url": "git+https://github.com/cbrews/dom.git"
+  },
+  "scripts": {
+    "lint": "eslint ."
   },
   "author": "Chris Brousseau",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/cbrews/el/issues"
-  },
-  "homepage": "https://github.com/cbrews/el#readme"
+  "homepage": "https://github.com/cbrews/dom#readme",
+  "devDependencies": {
+    "eslint": "^6.7.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2"
+  }
 }
