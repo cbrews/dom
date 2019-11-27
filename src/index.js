@@ -7,7 +7,11 @@ module.exports = class El {
         this.events = {};
     }
 
-    html(val){
+    exist() {
+        return this.el !== null;
+    }
+
+    html(val) {
         if (val !== undefined) {
             this.el.innerHTML = val;
         }

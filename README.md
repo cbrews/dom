@@ -29,6 +29,18 @@ const el = new El('my-el');
 </script>
 ```
 
+### El.exist()
+Gets if the el exists
+
+#### returns
+`Boolean` - if the el exists
+
+#### example
+```javascript
+const el = new El('non-existant');
+el.exist(); // false;
+```
+
 ### El.html()
 Gets the .innerHTML value of the DOM element.
 
@@ -38,7 +50,7 @@ Gets the .innerHTML value of the DOM element.
 #### example
 ```javascript
 const el = new El('my-el');
-const innerHTML = el.html()
+const innerHTML = el.html() // "some inner html"
 ```
 
 ### El.html(val)
