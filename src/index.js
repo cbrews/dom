@@ -3,9 +3,9 @@
  */
 module.exports = class El {
     constructor(id) {
-        if (typeof Node === 'object' && id instanceof Node) {
+        if ((typeof Node === 'object' || typeof Node === 'function') && id instanceof Node) {
             this.el = id;
-        } else if (typeof HTMLElement === 'object' && id instanceof HTMLElement) {
+        } else if ((typeof HTMLElement === 'object' || typeof HTMLElement === 'function') && id instanceof HTMLElement) {
             this.el = id;
         } else if (typeof id === 'string') {
             this.el = document.getElementById(id);
