@@ -4,6 +4,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     filename: 'el.min.js',
+    library: 'El',
     path: path.resolve(__dirname, 'dist'),
   },
 };
