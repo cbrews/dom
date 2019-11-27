@@ -3,8 +3,21 @@
  */
 module.exports = class El {
     constructor(id) {
-        this.el = document.getElementById(id);
+        if (typeof Node === 'object' && id instanceof Node) {
+            this.el = id;
+        } else if (typeof HTMLElement === 'object' && id instanceof HTMLElement) {
+            this.el = id;
+        } else if (typeof id === 'string') {
+            this.el = document.getElementById(id);
+        } else {
+            throw new Error(`Constuctor Type Error: Could not find a matching type for new El(${id})`);
+        }
+       
         this.events = {};
+    }
+
+    getEl() {
+        return this.el;
     }
 
     exist() {

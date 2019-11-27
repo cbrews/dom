@@ -13,10 +13,10 @@ const element = new El('element_id')
 ## El() API Methods
 
 ### constructor
-Creates a new element wrapper on a DOM element by ID
+Creates a new element wrapper on a DOM element by ID or el
 
 #### parameters
-* `id`: `String` - DOM element ID.
+* `id`: `String`|`HTMLElement`|`Node` - DOM element ID or el.
 
 #### example
 ```html
@@ -32,22 +32,34 @@ const el = new El('my-el');
 ### El.exist()
 Gets if the el exists
 
-#### returns
+Returns:
 `Boolean` - if the el exists
 
-#### example
+Example:
 ```javascript
 const el = new El('non-existant');
 el.exist(); // false;
 ```
 
+### El.getEl()
+Gets the internal DOM element.
+
+Returns:
+`HTMLElement` - internal el
+
+Example:
+```javascript
+const el = new El('my-el');
+el.getEl(); // <div id="my-el"></div>
+```
+
 ### El.html()
 Gets the .innerHTML value of the DOM element.
 
-#### returns
+Returns:
 `String` - .innerHTML of the DOM element
 
-#### example
+Example:
 ```javascript
 const el = new El('my-el');
 const innerHTML = el.html() // "some inner html"
@@ -56,13 +68,13 @@ const innerHTML = el.html() // "some inner html"
 ### El.html(val)
 Sets the .innerHTML of the DOM element.
 
-#### parameters
+Parameters:
 * `val`: `String` - String value to set the innerHTML to.  Unsafe.
 
-#### returns
+Returns: 
 `String` - .innerHTML of the DOM element
 
-#### example
+Example:
 ```javascript
 const el = new El('my-el');
 el.html('my string');
@@ -71,10 +83,10 @@ el.html('my string');
 ### El.value()
 Gets the .value of the DOM element.
 
-#### returns
+Returns:
 `String` - .value of the DOM element
 
-#### example
+Example:
 ```javascript
 const el = new El('my-el');
 const value = el.value();
@@ -83,10 +95,10 @@ const value = el.value();
 ### El.value(val)
 Sets the .value of the DOM element.
 
-#### parameters
+Parameters:
 * `val`: `String` - .value to set
 
-#### example
+Example:
 ```javascript
 const el = new El('my-el');
 el.value('some-value');
@@ -111,11 +123,11 @@ Attaches a function onto the corresponding event on the element.  Valid names:
 
 Reference: https://www.w3schools.com/tags/ref_eventattributes.asp
 
-#### parameters
+Parameters:
 * `name`: `String`|`Array<String>` - event name (or array of event names)
 * `fn`: `Function <e: Event, el: El>` - event function with this element wrapped
 
-#### example
+Example:
 ```javascript
 const el = new El('my-el');
 el.on('click', function(e, el){
