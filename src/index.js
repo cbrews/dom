@@ -41,7 +41,7 @@ class El {
 
         eventLists.forEach(e => {
             this.el['on' + e] = () => {
-                this.events[e].forEach(fn => fn(this))
+                this.events[e].forEach(fn => fn(e, this))
             }
         });
     }
