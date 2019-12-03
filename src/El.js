@@ -32,7 +32,6 @@ class El {
    * @returns {HTMLElement} internal el.
    *
    * @example
-   * const el = new El('my-el');
    * el.getEl(); // <div id="my-el"></div>
    */
   getEl() {
@@ -46,7 +45,6 @@ class El {
    * @returns {Boolean} true or false if the internal el exists.
    *
    * @example
-   * const el = new El('my-el');
    * el.exist(); // true
    */
   exist() {
@@ -62,7 +60,6 @@ class El {
    * @returns {String} html value
    *
    * @example
-   * const el = new El('my-el');
    * const val = el.html(); // "test-input"
    */
 
@@ -76,7 +73,6 @@ class El {
    * @returns {String} html value
    *
    * @example
-   * const el = new El('my-el');
    * el.html('test-input');
    * const val = el.html(); // "test-input"
    */
@@ -96,7 +92,6 @@ class El {
    * @returns {String} Value set on the DOM element
    *
    * @example
-   * const el = new El('my-el');
    * const innerHTML = el.html() // "some inner html"
    */
 
@@ -110,7 +105,6 @@ class El {
    * @returns {String} Value set on the DOM element
    *
    * @example
-   * const el = new El('my-el');
    * el.html("some inner html");
    * const innerHTML = el.html() // "some inner html"
    */
@@ -121,6 +115,12 @@ class El {
 
     return this.el.value;
   }
+
+  /**
+   * @callback EventCallbackFunction
+   * @param {Event} e DOM event
+   * @param {El} el Element wrapped in the El class
+   */
 
   /**
    * Attaches an event handler onto the DOM element based on the name.
@@ -149,10 +149,9 @@ class El {
    * @memberof El#
    * @function on
    * @param {String|Array<String>} name event name (or array of event names)
-   * @param {EventCallbackFunction<e, el>} fn Function parameters: (e: Event, el: El) event function with this element wrapped
+   * @param {EventCallbackFunction} fn Function parameters: (e: Event, el: El) event function with this element wrapped
    *
    * @example
-   * const el = new El('my-el');
    * el.on('click', function(e, el){
    *  el.html('clicked');
    * });

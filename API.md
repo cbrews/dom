@@ -7,6 +7,13 @@
 <dd></dd>
 </dl>
 
+## Typedefs
+
+<dl>
+<dt><a href="#EventCallbackFunction">EventCallbackFunction</a> : <code>function</code></dt>
+<dd></dd>
+</dl>
+
 <a name="El"></a>
 
 ## El
@@ -47,7 +54,6 @@ Gets the internal DOM element.
 **Returns**: <code>HTMLElement</code> - internal el.  
 **Example**  
 ```js
-const el = new El('my-el');
 el.getEl(); // <div id="my-el"></div>
 ```
 <a name="El+exist"></a>
@@ -59,7 +65,6 @@ Gets if the el exists in the DOM
 **Returns**: <code>Boolean</code> - true or false if the internal el exists.  
 **Example**  
 ```js
-const el = new El('my-el');
 el.exist(); // true
 ```
 <a name="El+html"></a>
@@ -72,7 +77,6 @@ Typically used for div & span-like elements.
 **Returns**: <code>String</code> - html value  
 **Example**  
 ```js
-const el = new El('my-el');
 const val = el.html(); // "test-input"
 ```
 <a name="El+html"></a>
@@ -90,7 +94,6 @@ Typically used for div & span-like elements.
 
 **Example**  
 ```js
-const el = new El('my-el');
 el.html('test-input');
 const val = el.html(); // "test-input"
 ```
@@ -104,7 +107,6 @@ Typically used for input-like elements.
 **Returns**: <code>String</code> - Value set on the DOM element  
 **Example**  
 ```js
-const el = new El('my-el');
 const innerHTML = el.html() // "some inner html"
 ```
 <a name="El+value"></a>
@@ -122,7 +124,6 @@ Typically used for input-like elements.
 
 **Example**  
 ```js
-const el = new El('my-el');
 el.html("some inner html");
 const innerHTML = el.html() // "some inner html"
 ```
@@ -157,11 +158,10 @@ You can pass multiple names to attach the same event handler to multiple events.
 | Param | Type | Description |
 | --- | --- | --- |
 | name | <code>String</code> \| <code>Array.&lt;String&gt;</code> | event name (or array of event names) |
-| fn | <code>EventCallbackFunction.&lt;e, el&gt;</code> | Function parameters: (e: Event, el: El) event function with this element wrapped |
+| fn | [<code>EventCallbackFunction</code>](#EventCallbackFunction) | Function parameters: (e: Event, el: El) event function with this element wrapped |
 
 **Example**  
 ```js
-const el = new El('my-el');
 el.on('click', function(e, el){
  el.html('clicked');
 });
@@ -211,7 +211,6 @@ Gets the internal DOM element.
 **Returns**: <code>HTMLElement</code> - internal el.  
 **Example**  
 ```js
-const el = new El('my-el');
 el.getEl(); // <div id="my-el"></div>
 ```
 <a name="El+exist"></a>
@@ -223,7 +222,6 @@ Gets if the el exists in the DOM
 **Returns**: <code>Boolean</code> - true or false if the internal el exists.  
 **Example**  
 ```js
-const el = new El('my-el');
 el.exist(); // true
 ```
 <a name="El+html"></a>
@@ -237,7 +235,6 @@ Typically used for div & span-like elements.
 **Returns**: <code>String</code> - html value  
 **Example**  
 ```js
-const el = new El('my-el');
 const val = el.html(); // "test-input"
 ```
 <a name="El+value"></a>
@@ -251,7 +248,6 @@ Typically used for input-like elements.
 **Returns**: <code>String</code> - Value set on the DOM element  
 **Example**  
 ```js
-const el = new El('my-el');
 const innerHTML = el.html() // "some inner html"
 ```
 <a name="El+on"></a>
@@ -285,12 +281,21 @@ You can pass multiple names to attach the same event handler to multiple events.
 | Param | Type | Description |
 | --- | --- | --- |
 | name | <code>String</code> \| <code>Array.&lt;String&gt;</code> | event name (or array of event names) |
-| fn | <code>EventCallbackFunction.&lt;e, el&gt;</code> | Function parameters: (e: Event, el: El) event function with this element wrapped |
+| fn | [<code>EventCallbackFunction</code>](#EventCallbackFunction) | Function parameters: (e: Event, el: El) event function with this element wrapped |
 
 **Example**  
 ```js
-const el = new El('my-el');
 el.on('click', function(e, el){
  el.html('clicked');
 });
 ```
+<a name="EventCallbackFunction"></a>
+
+## EventCallbackFunction : <code>function</code>
+**Kind**: global typedef  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| e | <code>Event</code> | DOM event |
+| el | [<code>El</code>](#El) | Element wrapped in the El class |
+

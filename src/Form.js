@@ -4,7 +4,7 @@ const El = require('./El');
  * @class Form
  * @extends El
  */
-module.exports = class Form extends El {
+class Form extends El {
   /**
    * Returns the form field wrapped in El wrapper
    *
@@ -25,4 +25,6 @@ module.exports = class Form extends El {
   getField(name) {
     return new El(this.el[name]);
   }
-};
+}
+
+module.exports = Form;
