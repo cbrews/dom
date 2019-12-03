@@ -9,7 +9,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "jsdoc": "jsdoc2md src/El.js > API.md"
+    "jsdoc": "jsdoc2md src/*.js > API.md"
   },
   "author": "Chris Brousseau",
   "license": "MIT",

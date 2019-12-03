@@ -1,12 +1,8 @@
-/**
- * Element wrapper class
- * @class El
- */
-module.exports = class El {
+class El {
   /**
    * Creates a new element wrapper on a DOM element by ID or el
    *
-   * @function constructor
+   * @constructor
    * @param {String|HTMLElement|Node} id
    *
    * @example
@@ -31,6 +27,7 @@ module.exports = class El {
   /**
    * Gets the internal DOM element.
    *
+   * @memberof El#
    * @function getEl
    * @returns {HTMLElement} internal el.
    *
@@ -43,11 +40,9 @@ module.exports = class El {
   }
 
   /**
-   * @function exist
-   *
-   * @description
    * Gets if the el exists in the DOM
-   *
+   * @memberof El#
+   * @function exist
    * @returns {Boolean} true or false if the internal el exists.
    *
    * @example
@@ -59,14 +54,25 @@ module.exports = class El {
   }
 
   /**
-   * Gets or sets the .innerHTML value of the DOM element.
+   * Gets the .innerHTML value of the DOM element.
    * Typically used for div & span-like elements.
    *
-   * Pass a string to set the html value.
-   * Pass no parameter to get the html value.
-   *
+   * @memberof El#
    * @function html
-   * @param {String|undefined} val Value to set the .innerHTML of the DOM element
+   * @returns {String} html value
+   *
+   * @example
+   * const el = new El('my-el');
+   * const val = el.html(); // "test-input"
+   */
+
+  /**
+   * Sets the .innerHTML value of the DOM element.
+   * Typically used for div & span-like elements.
+   *
+   * @memberof El#
+   * @function html
+   * @param {String} val Value to set the .innerHTML of the DOM element
    * @returns {String} html value
    *
    * @example
@@ -82,14 +88,25 @@ module.exports = class El {
   }
 
   /**
-   * Gets or sets the .value of the DOM element.
+   * Gets the .value of the DOM element.
    * Typically used for input-like elements.
    *
-   * Pass a string to set the html input value
-   * Pass no parameter to get the html input value
-   *
+   * @memberof El#
    * @function value
-   * @param {String|undefined} val Value to set onto the DOM element
+   * @returns {String} Value set on the DOM element
+   *
+   * @example
+   * const el = new El('my-el');
+   * const innerHTML = el.html() // "some inner html"
+   */
+
+  /**
+   * Sets the .value of the DOM element.
+   * Typically used for input-like elements.
+   *
+   * @memberof El#
+   * @function value
+   * @param {String} val Value to set onto the DOM element
    * @returns {String} Value set on the DOM element
    *
    * @example
@@ -122,12 +139,14 @@ module.exports = class El {
    * * `click`
    * * `mousedown`
    * * `mouseup`
+   *
    * ... etc
    *
    * Reference: https://www.w3schools.com/tags/ref_eventattributes.asp
    *
    * You can pass multiple names to attach the same event handler to multiple events.
    *
+   * @memberof El#
    * @function on
    * @param {String|Array<String>} name event name (or array of event names)
    * @param {EventCallbackFunction<e, el>} fn Function parameters: (e: Event, el: El) event function with this element wrapped
@@ -149,12 +168,11 @@ module.exports = class El {
   }
 
   /**
-   * @private
-   * @function refreshEventHandlers
-   *
-   * @description
    * Refreshes all event handler functions, or you can specify an event name to refresh.
    *
+   * @private
+   * @memberof El#
+   * @function refreshEventHandlers
    * @param {String|null} eventName event name of the handler to refresh
    */
   refreshEventHandlers(eventName) {
@@ -170,4 +188,6 @@ module.exports = class El {
       };
     });
   }
-};
+}
+
+module.exports = El;

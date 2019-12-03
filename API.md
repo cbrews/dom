@@ -3,71 +3,30 @@
 <dl>
 <dt><a href="#El">El</a></dt>
 <dd></dd>
-</dl>
-
-## Functions
-
-<dl>
-<dt><a href="#constructor">constructor(id)</a></dt>
-<dd><p>Creates a new element wrapper on a DOM element by ID or el</p>
-</dd>
-<dt><a href="#getEl">getEl()</a> ⇒ <code>HTMLElement</code></dt>
-<dd><p>Gets the internal DOM element.</p>
-</dd>
-<dt><a href="#exist">exist()</a> ⇒ <code>Boolean</code></dt>
-<dd><p>Gets if the el exists in the DOM</p>
-</dd>
-<dt><a href="#html">html(val)</a> ⇒ <code>String</code></dt>
-<dd><p>Gets or sets the .innerHTML value of the DOM element.
-Typically used for div &amp; span-like elements.</p>
-<p>Pass a string to set the html value.
-Pass no parameter to get the html value.</p>
-</dd>
-<dt><a href="#value">value(val)</a> ⇒ <code>String</code></dt>
-<dd><p>Gets or sets the .value of the DOM element.
-Typically used for input-like elements.</p>
-<p>Pass a string to set the html input value
-Pass no parameter to get the html input value</p>
-</dd>
-<dt><a href="#on">on(name, fn)</a></dt>
-<dd><p>Attaches an event handler onto the DOM element based on the name.</p>
-<p>Valid names:</p>
-<ul>
-<li><code>blur</code></li>
-<li><code>change</code></li>
-<li><code>focus</code></li>
-<li><code>contextmenu</code></li>
-<li><code>input</code></li>
-<li><code>select</code></li>
-<li><code>submit</code></li>
-<li><code>keydown</code></li>
-<li><code>keyup</code></li>
-<li><code>keypress</code></li>
-<li><code>click</code></li>
-<li><code>mousedown</code></li>
-<li><code>mouseup</code>
-... etc</li>
-</ul>
-<p>Reference: <a href="https://www.w3schools.com/tags/ref_eventattributes.asp">https://www.w3schools.com/tags/ref_eventattributes.asp</a></p>
-<p>You can pass multiple names to attach the same event handler to multiple events.</p>
-</dd>
+<dt><a href="#Form">Form</a> ⇐ <code><a href="#El">El</a></code></dt>
+<dd></dd>
 </dl>
 
 <a name="El"></a>
 
 ## El
 **Kind**: global class  
+
+* [El](#El)
+    * [new El(id)](#new_El_new)
+    * [.getEl()](#El+getEl) ⇒ <code>HTMLElement</code>
+    * [.exist()](#El+exist) ⇒ <code>Boolean</code>
+    * [.html()](#El+html) ⇒ <code>String</code>
+    * [.html(val)](#El+html) ⇒ <code>String</code>
+    * [.value()](#El+value) ⇒ <code>String</code>
+    * [.value(val)](#El+value) ⇒ <code>String</code>
+    * [.on(name, fn)](#El+on)
+
 <a name="new_El_new"></a>
 
-### new El()
-Element wrapper class
-
-<a name="constructor"></a>
-
-## constructor(id)
+### new El(id)
 Creates a new element wrapper on a DOM element by ID or el
 
-**Kind**: global function  
 
 | Param | Type |
 | --- | --- |
@@ -79,45 +38,55 @@ Creates a new element wrapper on a DOM element by ID or el
 // <div id="my-el"></div>
 const el = new El('my-el');
 ```
-<a name="getEl"></a>
+<a name="El+getEl"></a>
 
-## getEl() ⇒ <code>HTMLElement</code>
+### el.getEl() ⇒ <code>HTMLElement</code>
 Gets the internal DOM element.
 
-**Kind**: global function  
+**Kind**: instance method of [<code>El</code>](#El)  
 **Returns**: <code>HTMLElement</code> - internal el.  
 **Example**  
 ```js
 const el = new El('my-el');
 el.getEl(); // <div id="my-el"></div>
 ```
-<a name="exist"></a>
+<a name="El+exist"></a>
 
-## exist() ⇒ <code>Boolean</code>
+### el.exist() ⇒ <code>Boolean</code>
 Gets if the el exists in the DOM
 
-**Kind**: global function  
+**Kind**: instance method of [<code>El</code>](#El)  
 **Returns**: <code>Boolean</code> - true or false if the internal el exists.  
 **Example**  
 ```js
 const el = new El('my-el');
 el.exist(); // true
 ```
-<a name="html"></a>
+<a name="El+html"></a>
 
-## html(val) ⇒ <code>String</code>
-Gets or sets the .innerHTML value of the DOM element.
+### el.html() ⇒ <code>String</code>
+Gets the .innerHTML value of the DOM element.
 Typically used for div & span-like elements.
 
-Pass a string to set the html value.
-Pass no parameter to get the html value.
+**Kind**: instance method of [<code>El</code>](#El)  
+**Returns**: <code>String</code> - html value  
+**Example**  
+```js
+const el = new El('my-el');
+const val = el.html(); // "test-input"
+```
+<a name="El+html"></a>
 
-**Kind**: global function  
+### el.html(val) ⇒ <code>String</code>
+Sets the .innerHTML value of the DOM element.
+Typically used for div & span-like elements.
+
+**Kind**: instance method of [<code>El</code>](#El)  
 **Returns**: <code>String</code> - html value  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| val | <code>String</code> \| <code>undefined</code> | Value to set the .innerHTML of the DOM element |
+| val | <code>String</code> | Value to set the .innerHTML of the DOM element |
 
 **Example**  
 ```js
@@ -125,21 +94,31 @@ const el = new El('my-el');
 el.html('test-input');
 const val = el.html(); // "test-input"
 ```
-<a name="value"></a>
+<a name="El+value"></a>
 
-## value(val) ⇒ <code>String</code>
-Gets or sets the .value of the DOM element.
+### el.value() ⇒ <code>String</code>
+Gets the .value of the DOM element.
 Typically used for input-like elements.
 
-Pass a string to set the html input value
-Pass no parameter to get the html input value
+**Kind**: instance method of [<code>El</code>](#El)  
+**Returns**: <code>String</code> - Value set on the DOM element  
+**Example**  
+```js
+const el = new El('my-el');
+const innerHTML = el.html() // "some inner html"
+```
+<a name="El+value"></a>
 
-**Kind**: global function  
+### el.value(val) ⇒ <code>String</code>
+Sets the .value of the DOM element.
+Typically used for input-like elements.
+
+**Kind**: instance method of [<code>El</code>](#El)  
 **Returns**: <code>String</code> - Value set on the DOM element  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| val | <code>String</code> \| <code>undefined</code> | Value to set onto the DOM element |
+| val | <code>String</code> | Value to set onto the DOM element |
 
 **Example**  
 ```js
@@ -147,9 +126,9 @@ const el = new El('my-el');
 el.html("some inner html");
 const innerHTML = el.html() // "some inner html"
 ```
-<a name="on"></a>
+<a name="El+on"></a>
 
-## on(name, fn)
+### el.on(name, fn)
 Attaches an event handler onto the DOM element based on the name.
 
 Valid names:
@@ -166,13 +145,142 @@ Valid names:
 * `click`
 * `mousedown`
 * `mouseup`
+
 ... etc
 
 Reference: https://www.w3schools.com/tags/ref_eventattributes.asp
 
 You can pass multiple names to attach the same event handler to multiple events.
 
-**Kind**: global function  
+**Kind**: instance method of [<code>El</code>](#El)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| name | <code>String</code> \| <code>Array.&lt;String&gt;</code> | event name (or array of event names) |
+| fn | <code>EventCallbackFunction.&lt;e, el&gt;</code> | Function parameters: (e: Event, el: El) event function with this element wrapped |
+
+**Example**  
+```js
+const el = new El('my-el');
+el.on('click', function(e, el){
+ el.html('clicked');
+});
+```
+<a name="Form"></a>
+
+## Form ⇐ [<code>El</code>](#El)
+**Kind**: global class  
+**Extends**: [<code>El</code>](#El)  
+
+* [Form](#Form) ⇐ [<code>El</code>](#El)
+    * [.getField(name)](#Form+getField) ⇒ [<code>El</code>](#El)
+    * [.getEl()](#El+getEl) ⇒ <code>HTMLElement</code>
+    * [.exist()](#El+exist) ⇒ <code>Boolean</code>
+    * [.html()](#El+html) ⇒ <code>String</code>
+    * [.value()](#El+value) ⇒ <code>String</code>
+    * [.on(name, fn)](#El+on)
+
+<a name="Form+getField"></a>
+
+### form.getField(name) ⇒ [<code>El</code>](#El)
+Returns the form field wrapped in El wrapper
+
+**Kind**: instance method of [<code>Form</code>](#Form)  
+**Returns**: [<code>El</code>](#El) - Form field element accessible as an El  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| name | <code>String</code> | Field name (based on input.name attribute) |
+
+**Example**  
+```js
+// <form id="test">
+//   <input name="inputfield" type="text" />
+// </form>
+
+const testForm = new Form('test');
+const input = testForm.getField('inputfield');
+input.value('mytext');
+```
+<a name="El+getEl"></a>
+
+### form.getEl() ⇒ <code>HTMLElement</code>
+Gets the internal DOM element.
+
+**Kind**: instance method of [<code>Form</code>](#Form)  
+**Returns**: <code>HTMLElement</code> - internal el.  
+**Example**  
+```js
+const el = new El('my-el');
+el.getEl(); // <div id="my-el"></div>
+```
+<a name="El+exist"></a>
+
+### form.exist() ⇒ <code>Boolean</code>
+Gets if the el exists in the DOM
+
+**Kind**: instance method of [<code>Form</code>](#Form)  
+**Returns**: <code>Boolean</code> - true or false if the internal el exists.  
+**Example**  
+```js
+const el = new El('my-el');
+el.exist(); // true
+```
+<a name="El+html"></a>
+
+### form.html() ⇒ <code>String</code>
+Gets the .innerHTML value of the DOM element.
+Typically used for div & span-like elements.
+
+**Kind**: instance method of [<code>Form</code>](#Form)  
+**Overrides**: [<code>html</code>](#El+html)  
+**Returns**: <code>String</code> - html value  
+**Example**  
+```js
+const el = new El('my-el');
+const val = el.html(); // "test-input"
+```
+<a name="El+value"></a>
+
+### form.value() ⇒ <code>String</code>
+Gets the .value of the DOM element.
+Typically used for input-like elements.
+
+**Kind**: instance method of [<code>Form</code>](#Form)  
+**Overrides**: [<code>value</code>](#El+value)  
+**Returns**: <code>String</code> - Value set on the DOM element  
+**Example**  
+```js
+const el = new El('my-el');
+const innerHTML = el.html() // "some inner html"
+```
+<a name="El+on"></a>
+
+### form.on(name, fn)
+Attaches an event handler onto the DOM element based on the name.
+
+Valid names:
+* `blur`
+* `change`
+* `focus`
+* `contextmenu`
+* `input`
+* `select`
+* `submit`
+* `keydown`
+* `keyup`
+* `keypress`
+* `click`
+* `mousedown`
+* `mouseup`
+
+... etc
+
+Reference: https://www.w3schools.com/tags/ref_eventattributes.asp
+
+You can pass multiple names to attach the same event handler to multiple events.
+
+**Kind**: instance method of [<code>Form</code>](#Form)  
 
 | Param | Type | Description |
 | --- | --- | --- |
