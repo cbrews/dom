@@ -8,7 +8,8 @@
     "url": "git+https://github.com/cbrews/dom.git"
   },
   "scripts": {
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "jsdoc": "jsdoc2md src/El.js > API.md"
   },
   "author": "Chris Brousseau",
   "license": "MIT",
@@ -16,6 +17,7 @@
   "devDependencies": {
     "eslint": "^6.7.1",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.18.2"
+    "eslint-plugin-import": "^2.18.2",
+    "jsdoc-to-markdown": "^5.0.3"
   }
 }
