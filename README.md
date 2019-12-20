@@ -1,6 +1,8 @@
 # el
 
-Stupid simple element DOM management, providing wrappers for:
+Stupid simple element DOM management.  For basic manipulation.
+
+Providing wrappers for:
 
 * DOM elements: setting, getting html
 * Input elements: setting, getting values
@@ -21,6 +23,8 @@ Provides wrappers for DOM elements for easy data access an event maniplation.
 
 Assuming you have the following HTML:
 
+### HTML
+
 ```html
 <div id="el-1">
   Some Text!
@@ -28,6 +32,8 @@ Assuming you have the following HTML:
 
 <input id="input-1" />
 ```
+
+### Javascript
 
 ```js
 const { El } = require('@cbrews/dom');
@@ -49,12 +55,16 @@ el2.on('change', _ => {
 
 Forms allow for some additional handling and shortcuts:
 
+### HTML
+
 ```html
 <form id="my-form">
   <input name="name" />
   <input type="submit" />
 </form>
 ```
+
+### Javascript
 
 ```js
 const { Form } = require('@cbrews/dom');
