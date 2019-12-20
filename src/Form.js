@@ -22,7 +22,8 @@ class Form extends El {
    * testForm.getField('inputfield').value('my test value');
    */
   getField(name) {
-    return new El(this.el[name]);
+    const { elements } = this.el;
+    return new El(elements[name] || null);
   }
 
   /**

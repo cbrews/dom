@@ -10,7 +10,9 @@
   "scripts": {
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
-    "jsdoc": "jsdoc2md src/*.js > API.md"
+    "jsdoc": "jsdoc2md src/*.js > API.md",
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "author": "Chris Brousseau",
   "license": "MIT",
@@ -19,6 +21,8 @@
     "eslint": "^6.7.1",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^23.1.1",
+    "jest": "^24.9.0",
     "jsdoc-to-markdown": "^5.0.3"
   }
 }

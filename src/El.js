@@ -13,29 +13,22 @@ class El {
   constructor(id) {
     if ((typeof Node === 'object' || typeof Node === 'function') && id instanceof Node) {
       this.el = id;
+      this.events = {};
     } else if ((typeof HTMLElement === 'object' || typeof HTMLElement === 'function') && id instanceof HTMLElement) {
       this.el = id;
+      this.events = {};
+    } else if (id instanceof El) {
+      this.el = id.el;
+      this.events = id.events;
     } else if (typeof id === 'string') {
       this.el = document.getElementById(id);
+      this.events = {};
+    } else if (id === null) {
+      this.el = null;
+      this.events = {};
     } else {
       throw new Error(`Constuctor Type Error: Could not find a matching type for new El(${id})`);
     }
-
-    this.events = {};
-  }
-
-  /**
-   * Gets the internal DOM element.
-   *
-   * @memberof El#
-   * @function getEl
-   * @returns {HTMLElement} internal el.
-   *
-   * @example
-   * el.getEl(); // <div id="my-el"></div>
-   */
-  getEl() {
-    return this.el;
   }
 
   /**
@@ -49,6 +42,25 @@ class El {
    */
   exist() {
     return this.el !== null;
+  }
+
+  /**
+   * Gets the internal DOM element.
+   *
+   * @memberof El#
+   * @function getEl
+   * @returns {HTMLElement} internal el.
+   * @throws {Error} if the element does not exist
+   *
+   * @example
+   * el.getEl(); // <div id="my-el"></div>
+   */
+  getEl() {
+    if (!this.exist()) {
+      throw new Error('Element does not exist');
+    }
+
+    return this.el;
   }
 
   /**
@@ -68,9 +80,9 @@ class El {
    */
   html(val) {
     if (val !== undefined) {
-      this.el.innerHTML = val;
+      this.getEl().innerHTML = val;
     }
-    return this.el.innerHTML;
+    return this.getEl().innerHTML;
   }
 
   /**
@@ -90,10 +102,10 @@ class El {
    */
   value(val) {
     if (val !== undefined) {
-      this.el.value = val;
+      this.getEl().value = val;
     }
 
-    return this.el.value;
+    return this.getEl().value;
   }
 
   /**
@@ -170,7 +182,7 @@ class El {
     }
 
     eventLists.forEach((e) => {
-      this.el[`on${e}`] = () => {
+      this.getEl()[`on${e}`] = () => {
         this.events[e].forEach((fn) => fn(e, this));
       };
     });
