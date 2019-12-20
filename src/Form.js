@@ -15,15 +15,37 @@ class Form extends El {
    *
    * @example
    * // <form id="test">
-   * //   <input name="inputfield" type="text" />
+   * //   <input name="inputfield" />
    * // </form>
    *
    * const testForm = new Form('test');
-   * const input = testForm.getField('inputfield');
-   * input.value('mytext');
+   * testForm.getField('inputfield').value('my test value');
    */
   getField(name) {
     return new El(this.el[name]);
+  }
+
+  /**
+   * Special handler action for the submit action on a form.
+   *
+   * @memberof Form#
+   * @function submit
+   * @param {EventCallbackFunction} callbackFn callback function for this DOM event
+   *
+   * @example
+   * // <form id="test">
+   * //   <input name="inputfield" />
+   * // </form>
+   *
+   * const form = new Form('test');
+   * form.submit(function(e, f){
+   *   e.preventDefault();
+   *   const value = f.getField('inputfield').value();
+   *   console.log(value);
+   * })
+   */
+  submit(callbackFn) {
+    this.on('submit', callbackFn);
   }
 }
 

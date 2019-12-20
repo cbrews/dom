@@ -2,13 +2,14 @@
   "name": "@cbrews/dom",
   "version": "1.0.0",
   "description": "Quick class-based strategy for element & form management",
-  "main": "src/index.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cbrews/dom.git"
   },
   "scripts": {
     "lint": "eslint .",
+    "lint-fix": "eslint . --fix",
     "jsdoc": "jsdoc2md src/*.js > API.md"
   },
   "author": "Chris Brousseau",

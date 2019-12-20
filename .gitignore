@@ -1,4 +1,10 @@
+# Javascript build items
+dist/
 node_modules/
+
+# OSX
 .DS_Store
+
+# IDE
 .idea
 .vscode

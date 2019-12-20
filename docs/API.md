@@ -11,7 +11,8 @@
 
 <dl>
 <dt><a href="#EventCallbackFunction">EventCallbackFunction</a> : <code>function</code></dt>
-<dd></dd>
+<dd><p>Wrapped callback function with the El object passed for event handling</p>
+</dd>
 </dl>
 
 <a name="El"></a>
@@ -23,11 +24,9 @@
     * [new El(id)](#new_El_new)
     * [.getEl()](#El+getEl) ⇒ <code>HTMLElement</code>
     * [.exist()](#El+exist) ⇒ <code>Boolean</code>
-    * [.html()](#El+html) ⇒ <code>String</code>
     * [.html(val)](#El+html) ⇒ <code>String</code>
-    * [.value()](#El+value) ⇒ <code>String</code>
     * [.value(val)](#El+value) ⇒ <code>String</code>
-    * [.on(name, fn)](#El+on)
+    * [.on(eventName, callbackFn)](#El+on)
 
 <a name="new_El_new"></a>
 
@@ -69,67 +68,47 @@ el.exist(); // true
 ```
 <a name="El+html"></a>
 
-### el.html() ⇒ <code>String</code>
-Gets the .innerHTML value of the DOM element.
-Typically used for div & span-like elements.
-
-**Kind**: instance method of [<code>El</code>](#El)  
-**Returns**: <code>String</code> - html value  
-**Example**  
-```js
-const val = el.html(); // "test-input"
-```
-<a name="El+html"></a>
-
 ### el.html(val) ⇒ <code>String</code>
-Sets the .innerHTML value of the DOM element.
+Gets or sets the .innerHTML value of the DOM element.
 Typically used for div & span-like elements.
+
+If val is excluded, this will retrieve the html only.
 
 **Kind**: instance method of [<code>El</code>](#El)  
 **Returns**: <code>String</code> - html value  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| val | <code>String</code> | Value to set the .innerHTML of the DOM element |
+| val | <code>String</code> \| <code>undefined</code> | Value to set the .innerHTML of the DOM element |
 
 **Example**  
 ```js
-el.html('test-input');
-const val = el.html(); // "test-input"
-```
-<a name="El+value"></a>
-
-### el.value() ⇒ <code>String</code>
-Gets the .value of the DOM element.
-Typically used for input-like elements.
-
-**Kind**: instance method of [<code>El</code>](#El)  
-**Returns**: <code>String</code> - Value set on the DOM element  
-**Example**  
-```js
-const innerHTML = el.html() // "some inner html"
+el.html('test-input'); // sets innerHTML
+const val = el.html(); // retrieves innerHTML
 ```
 <a name="El+value"></a>
 
 ### el.value(val) ⇒ <code>String</code>
-Sets the .value of the DOM element.
+Gets or sets the .value of the DOM element.
 Typically used for input-like elements.
+
+If val is excluded, will retrieve the value only.
 
 **Kind**: instance method of [<code>El</code>](#El)  
 **Returns**: <code>String</code> - Value set on the DOM element  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| val | <code>String</code> | Value to set onto the DOM element |
+| val | <code>String</code> \| <code>undefined</code> | Value to set onto the DOM element |
 
 **Example**  
 ```js
-el.html("some inner html");
-const innerHTML = el.html() // "some inner html"
+el.value("some inner html"); // sets value
+const innerHTML = el.value() // gets value
 ```
 <a name="El+on"></a>
 
-### el.on(name, fn)
+### el.on(eventName, callbackFn)
 Attaches an event handler onto the DOM element based on the name.
 
 Valid names:
@@ -157,8 +136,8 @@ You can pass multiple names to attach the same event handler to multiple events.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| name | <code>String</code> \| <code>Array.&lt;String&gt;</code> | event name (or array of event names) |
-| fn | [<code>EventCallbackFunction</code>](#EventCallbackFunction) | Function parameters: (e: Event, el: El) event function with this element wrapped |
+| eventName | <code>String</code> \| <code>Array.&lt;String&gt;</code> | event name (or array of event names) |
+| callbackFn | [<code>EventCallbackFunction</code>](#EventCallbackFunction) | callback function for this DOM event |
 
 **Example**  
 ```js
@@ -174,11 +153,12 @@ el.on('click', function(e, el){
 
 * [Form](#Form) ⇐ [<code>El</code>](#El)
     * [.getField(name)](#Form+getField) ⇒ [<code>El</code>](#El)
+    * [.submit(callbackFn)](#Form+submit)
     * [.getEl()](#El+getEl) ⇒ <code>HTMLElement</code>
     * [.exist()](#El+exist) ⇒ <code>Boolean</code>
-    * [.html()](#El+html) ⇒ <code>String</code>
-    * [.value()](#El+value) ⇒ <code>String</code>
-    * [.on(name, fn)](#El+on)
+    * [.html(val)](#El+html) ⇒ <code>String</code>
+    * [.value(val)](#El+value) ⇒ <code>String</code>
+    * [.on(eventName, callbackFn)](#El+on)
 
 <a name="Form+getField"></a>
 
@@ -195,12 +175,35 @@ Returns the form field wrapped in El wrapper
 **Example**  
 ```js
 // <form id="test">
-//   <input name="inputfield" type="text" />
+//   <input name="inputfield" />
 // </form>
 
 const testForm = new Form('test');
-const input = testForm.getField('inputfield');
-input.value('mytext');
+testForm.getField('inputfield').value('my test value');
+```
+<a name="Form+submit"></a>
+
+### form.submit(callbackFn)
+Special handler action for the submit action on a form.
+
+**Kind**: instance method of [<code>Form</code>](#Form)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| callbackFn | [<code>EventCallbackFunction</code>](#EventCallbackFunction) | callback function for this DOM event |
+
+**Example**  
+```js
+// <form id="test">
+//   <input name="inputfield" />
+// </form>
+
+const form = new Form('test');
+form.submit(function(e, f){
+  e.preventDefault();
+  const value = f.getField('inputfield').value();
+  console.log(value);
+})
 ```
 <a name="El+getEl"></a>
 
@@ -226,33 +229,47 @@ el.exist(); // true
 ```
 <a name="El+html"></a>
 
-### form.html() ⇒ <code>String</code>
-Gets the .innerHTML value of the DOM element.
+### form.html(val) ⇒ <code>String</code>
+Gets or sets the .innerHTML value of the DOM element.
 Typically used for div & span-like elements.
 
+If val is excluded, this will retrieve the html only.
+
 **Kind**: instance method of [<code>Form</code>](#Form)  
-**Overrides**: [<code>html</code>](#El+html)  
 **Returns**: <code>String</code> - html value  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> \| <code>undefined</code> | Value to set the .innerHTML of the DOM element |
+
 **Example**  
 ```js
-const val = el.html(); // "test-input"
+el.html('test-input'); // sets innerHTML
+const val = el.html(); // retrieves innerHTML
 ```
 <a name="El+value"></a>
 
-### form.value() ⇒ <code>String</code>
-Gets the .value of the DOM element.
+### form.value(val) ⇒ <code>String</code>
+Gets or sets the .value of the DOM element.
 Typically used for input-like elements.
 
+If val is excluded, will retrieve the value only.
+
 **Kind**: instance method of [<code>Form</code>](#Form)  
-**Overrides**: [<code>value</code>](#El+value)  
 **Returns**: <code>String</code> - Value set on the DOM element  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>String</code> \| <code>undefined</code> | Value to set onto the DOM element |
+
 **Example**  
 ```js
-const innerHTML = el.html() // "some inner html"
+el.value("some inner html"); // sets value
+const innerHTML = el.value() // gets value
 ```
 <a name="El+on"></a>
 
-### form.on(name, fn)
+### form.on(eventName, callbackFn)
 Attaches an event handler onto the DOM element based on the name.
 
 Valid names:
@@ -280,8 +297,8 @@ You can pass multiple names to attach the same event handler to multiple events.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| name | <code>String</code> \| <code>Array.&lt;String&gt;</code> | event name (or array of event names) |
-| fn | [<code>EventCallbackFunction</code>](#EventCallbackFunction) | Function parameters: (e: Event, el: El) event function with this element wrapped |
+| eventName | <code>String</code> \| <code>Array.&lt;String&gt;</code> | event name (or array of event names) |
+| callbackFn | [<code>EventCallbackFunction</code>](#EventCallbackFunction) | callback function for this DOM event |
 
 **Example**  
 ```js
@@ -292,10 +309,19 @@ el.on('click', function(e, el){
 <a name="EventCallbackFunction"></a>
 
 ## EventCallbackFunction : <code>function</code>
+Wrapped callback function with the El object passed for event handling
+
 **Kind**: global typedef  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| e | <code>Event</code> | DOM event |
+| e | <code>Event</code> | DOM event (https://developer.mozilla.org/en-US/docs/Web/Events) |
 | el | [<code>El</code>](#El) | Element wrapped in the El class |
 
+**Example**  
+```js
+function callback(e, el) {
+  e.preventDefault(); // has all the attributes of a normal dom event
+  el.html(); // gets innerHTML
+}
+```

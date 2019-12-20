@@ -52,29 +52,19 @@ class El {
   }
 
   /**
-   * Gets the .innerHTML value of the DOM element.
+   * Gets or sets the .innerHTML value of the DOM element.
    * Typically used for div & span-like elements.
+   *
+   * If val is excluded, this will retrieve the html only.
    *
    * @memberof El#
    * @function html
+   * @param {String|undefined} val Value to set the .innerHTML of the DOM element
    * @returns {String} html value
    *
    * @example
-   * const val = el.html(); // "test-input"
-   */
-
-  /**
-   * Sets the .innerHTML value of the DOM element.
-   * Typically used for div & span-like elements.
-   *
-   * @memberof El#
-   * @function html
-   * @param {String} val Value to set the .innerHTML of the DOM element
-   * @returns {String} html value
-   *
-   * @example
-   * el.html('test-input');
-   * const val = el.html(); // "test-input"
+   * el.html('test-input'); // sets innerHTML
+   * const val = el.html(); // retrieves innerHTML
    */
   html(val) {
     if (val !== undefined) {
@@ -84,29 +74,19 @@ class El {
   }
 
   /**
-   * Gets the .value of the DOM element.
+   * Gets or sets the .value of the DOM element.
    * Typically used for input-like elements.
+   *
+   * If val is excluded, will retrieve the value only.
    *
    * @memberof El#
    * @function value
+   * @param {String|undefined} val Value to set onto the DOM element
    * @returns {String} Value set on the DOM element
    *
    * @example
-   * const innerHTML = el.html() // "some inner html"
-   */
-
-  /**
-   * Sets the .value of the DOM element.
-   * Typically used for input-like elements.
-   *
-   * @memberof El#
-   * @function value
-   * @param {String} val Value to set onto the DOM element
-   * @returns {String} Value set on the DOM element
-   *
-   * @example
-   * el.html("some inner html");
-   * const innerHTML = el.html() // "some inner html"
+   * el.value("some inner html"); // sets value
+   * const innerHTML = el.value() // gets value
    */
   value(val) {
     if (val !== undefined) {
@@ -117,9 +97,17 @@ class El {
   }
 
   /**
+   * Wrapped callback function with the El object passed for event handling
+   *
    * @callback EventCallbackFunction
-   * @param {Event} e DOM event
+   * @param {Event} e DOM event (https://developer.mozilla.org/en-US/docs/Web/Events)
    * @param {El} el Element wrapped in the El class
+   *
+   * @example
+   * function callback(e, el) {
+   *   e.preventDefault(); // has all the attributes of a normal dom event
+   *   el.html(); // gets innerHTML
+   * }
    */
 
   /**
@@ -148,20 +136,20 @@ class El {
    *
    * @memberof El#
    * @function on
-   * @param {String|Array<String>} name event name (or array of event names)
-   * @param {EventCallbackFunction} fn Function parameters: (e: Event, el: El) event function with this element wrapped
+   * @param {String|Array<String>} eventName event name (or array of event names)
+   * @param {EventCallbackFunction} callbackFn callback function for this DOM event
    *
    * @example
    * el.on('click', function(e, el){
    *  el.html('clicked');
    * });
    */
-  on(name, fn) {
-    [...new Set([].concat(name))].forEach((n) => {
+  on(eventName, callbackFn) {
+    [...new Set([].concat(eventName))].forEach((n) => {
       if (!this.events[n]) {
         this.events[n] = [];
       }
-      this.events[n].push(fn);
+      this.events[n].push(callbackFn);
       this.refreshEventHandlers(n);
     });
   }
