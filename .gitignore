@@ -1,6 +1,7 @@
 # Javascript build items
 dist/
 node_modules/
+coverage/
 
 # OSX
 .DS_Store
